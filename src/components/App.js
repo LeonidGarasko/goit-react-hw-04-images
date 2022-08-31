@@ -1,5 +1,14 @@
+import * as API from './Api';
 export class App extends Component {
-  state = {};
+  state = {
+    img: null,
+  };
+  componentDidMount() {
+    const cat = API.fetchImg(cat);
+    this.setState({ img: this.cat });
+  }
 
-  render() {}
+  render() {
+    <div></div>;
+  }
 }
