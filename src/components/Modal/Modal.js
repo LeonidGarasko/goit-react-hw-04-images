@@ -21,7 +21,7 @@ const Modal = ({ onClose, src }) => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('click', handleBackdropClick);
     };
-  }, []);
+  });
 
   return (
     <OverlayStyled onClick={handleBackdropClick}>
