@@ -4,6 +4,16 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 
 const Modal = ({ onClose, src }) => {
+  const handleBackdropClick = e => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+  const handleKeyDown = e => {
+    if (e.code === 'Escape') {
+      onClose();
+    }
+  };
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('click', handleBackdropClick);
@@ -12,16 +22,7 @@ const Modal = ({ onClose, src }) => {
       window.removeEventListener('click', handleBackdropClick);
     };
   }, []);
-  const handleKeyDown = e => {
-    if (e.code === 'Escape') {
-      onClose();
-    }
-  };
-  const handleBackdropClick = e => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
+
   return (
     <OverlayStyled onClick={handleBackdropClick}>
       <ModalStyled>
