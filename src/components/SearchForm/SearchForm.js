@@ -2,34 +2,27 @@ import SearchFormStyled from './SearchForm.styled';
 import SearchFormInput from './SearchFormButton/SearchFormInput/SearchFormInput';
 import SearchFormButton from './SearchFormButton/SearchFormButton';
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+import { useState } from 'react';
 
-class SearchForm extends Component {
-  state = {
-    searchText: '',
+const SearchForm = ({ onSubmit }) => {
+  const [searchText, setSearchText] = useState('');
+
+  const handleChange = e => {
+    setSearchText(e.currentTarget.value);
   };
 
-  handleChange = e => {
-    this.setState({ searchText: e.currentTarget.value });
-  };
-
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.searchText);
+    onSubmit(searchText);
   };
 
-  render() {
-    return (
-      <SearchFormStyled onSubmit={this.handleSubmit}>
-        <SearchFormButton />
-        <SearchFormInput
-          onChange={this.handleChange}
-          value={this.state.searchText}
-        />
-      </SearchFormStyled>
-    );
-  }
-}
+  return (
+    <SearchFormStyled onSubmit={handleSubmit}>
+      <SearchFormButton />
+      <SearchFormInput onChange={handleChange} value={searchText} />
+    </SearchFormStyled>
+  );
+};
 
 export default SearchForm;
 
